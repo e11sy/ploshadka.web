@@ -53,7 +53,6 @@ export default class AuthorizableTransport extends Transport {
    * @param accessToken - JWT to send with the authorization header
    */
   public authorize(accessToken: string): void {
-    console.log('authorize', accessToken);
     this.headers.set('Authorization', `Bearer ${accessToken}`);
 
     this.authState = 'authorized';

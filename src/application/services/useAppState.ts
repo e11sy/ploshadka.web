@@ -29,7 +29,6 @@ export const useAppState = createSharedComposable((): UseAppStateComposable => {
    */
   AppStateController.user((prop: 'user', value: User | null) => {
     if (prop === 'user') {
-      console.log('user changed callback', prop, value);
       user.value = value as User;
     }
   });
