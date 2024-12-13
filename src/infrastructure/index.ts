@@ -1,5 +1,6 @@
 import AuthRepository from '@/infrastructure/auth.repository'
 import UserRepository from './user.repository';
+import EventsRepository from './events.repository';
 import AuthStore from '@/infrastructure/storage/auth';
 import UserStore from '@/infrastructure/storage/user';
 import PloshadkaApiTransport from './transport/ploshadka-api';
@@ -11,6 +12,7 @@ import { AUTH_LOGOUT_EVENT_NAME } from '@/domain/event-bus/events/AuthLogoutEven
 export interface Repositories {
   auth: AuthRepository;
   user: UserRepository;
+  events: EventsRepository;
 }
 
 export function init(ploshadkaApiUrl: string, eventBus: EventBus): Repositories {
@@ -60,9 +62,11 @@ export function init(ploshadkaApiUrl: string, eventBus: EventBus): Repositories 
 
   const authRepository = new AuthRepository(authStore, ploshadkaApiTransport);
   const userRepository = new UserRepository(userStore, ploshadkaApiTransport);
+  const eventsRepository = new EventsRepository(ploshadkaApiTransport);
 
   return {
     auth: authRepository,
-    user: userRepository
+    user: userRepository,
+    events: eventsRepository
   }
 }

@@ -1,0 +1,101 @@
+<template>
+  <div :class="$style['event-card']">
+    <div :class="$style['event-card__heading']">
+      <h2 :class="$style['event-card__heading-location']">
+        {{ event.courtId }}
+      </h2>
+      <p :class="$style['event-card__heading-sport']">
+        {{ event.sport }}
+      </p>
+    </div>
+    <div :class="$style['event-card__separator']"/>
+    <div :class="$style['event-card__info-name']">
+      {{ event.name }}
+    </div>
+    <div :class="$style['event-card__info-description']">
+      {{ event.description }}
+    </div>
+    <div :class="$style['event-card__footer']">
+      <Button
+        content="Участвовать"
+      ></Button>
+      <div :class="$style['event-card__footer-participants']">
+        {{ event.peopleState[0] }}/{{ event.peopleState[1] }} участников
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Event from '@/domain/entities/Event';
+import Button from '../Button';
+
+defineProps<{
+  event: Event;
+}>();
+
+</script>
+
+<style module lang="postcss">
+.event-card {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 0 16px 16px 16px;
+
+  &__heading {
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+
+    &-location {
+      margin-right: auto;
+      overflow: ellipsis;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    &-sport {
+      margin-left: auto;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+  &__separator {
+    height: 1px;
+    background-color: #E0E0E0;
+  }
+
+  &__info {
+    &-name {
+      word-break: break-all;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 16px;
+    }
+
+    &-description {
+      margin: 10px 0 20px;
+      word-break: break-all;
+      font-size: 16px;
+      font-weight: default;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+
+    &-participants {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+
+</style>

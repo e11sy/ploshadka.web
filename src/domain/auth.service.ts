@@ -50,15 +50,12 @@ export default class AuthService {
    * @param refreshToken - token got from backend. Used to refresh access token
    */
   public acceptSession(accessToken: string, refreshToken: string): void {
-    console.log('accept session')
     this.eventBus.dispatchEvent(
       new AuthCompletedEvent({
         accessToken,
         refreshToken,
       })
     );
-
-    console.log('auth complete event dispatched')
   }
 
   /**

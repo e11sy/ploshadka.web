@@ -39,7 +39,6 @@ export abstract class SubscribableStore<StoreData extends Record<string, unknown
    * @param callback - callback that will be called on store change. Accepts changed property and its new data
    */
   public subscribe(callback: PropChangeCallback<StoreData>): void {
-    console.log('subscribed on changes', callback)
     this.subscribers.push(callback);
 
     /**
@@ -63,8 +62,6 @@ export abstract class SubscribableStore<StoreData extends Record<string, unknown
    * @param changes - array of changes
    */
   protected onDataChange(changes: Change<StoreData>[]): void {
-    console.log('data changed', changes);
-
     /**
      * If there are no subscribers stash current change
      */
