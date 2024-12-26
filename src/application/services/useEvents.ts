@@ -18,14 +18,17 @@ interface useEventsComposableState {
    * Update currently displayed events to my events
    */
   updateEventsToMyEvents: () => Promise<void>;
+
+  /**
+   * Change participation status of current user in event
+   */
+  changeParticipationStatus: (eventId: Event['id']) => Promise<void>;
 }
 
 export const useEvents = (): useEventsComposableState => {
   const events = ref<Event[]>([]);
 
   async function updateEventsBySport(sport: Event['sport']): Promise<void> {
-    console.log('try to update eevents by sport', sport);
-
     events.value = await eventsService.getEventsBySport(sport);
   }
 
@@ -33,9 +36,29 @@ export const useEvents = (): useEventsComposableState => {
     events.value = await eventsService.getMyEvents();
   }
 
+  /**
+   * Change participation status of current user in event
+   * @param eventId Event id to change participation status
+   */
+  async function changeParticipationStatus(eventId: Event['id']): Promise<void> {
+    if (await eventsService.changeParticipationStatus(eventId)) {
+      if (events.value.find(event => event.id === eventId)!.peopleCount !== undefined) {
+        events.value.find(event => event.id === eventId)!.peopleCount! += 1;
+      } else {
+        events.value.find(event => event.id === eventId)!.peopleCount = 1;
+      }
+    }
+    else {
+      if (events.value.find(event => event.id === eventId)!.peopleCount !== 0) {
+        events.value.find(event => event.id === eventId)!.peopleCount! -= 1;
+      }
+    }
+  }
+
   return {
     events,
     updateEventsBySport,
     updateEventsToMyEvents,
+    changeParticipationStatus,
   }
 }

@@ -17,10 +17,12 @@
     </div>
     <div :class="$style['event-card__footer']">
       <Button
-        content="Участвовать"
+        color="green"
+        :content="'Участвовать'"
+        @click="$props.onActivated()"
       ></Button>
       <div :class="$style['event-card__footer-participants']">
-        {{ event.peopleState[0] }}/{{ event.peopleState[1] }} участников
+        {{ event.peopleCount ?? 0 }}/{{ event.peopleLimit }} участников
       </div>
     </div>
   </div>
@@ -32,6 +34,7 @@ import Button from '../Button';
 
 defineProps<{
   event: Event;
+  onActivated: () => void;
 }>();
 
 </script>

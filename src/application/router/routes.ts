@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
-import { Home, Events } from '@/presentation/pages';
+import { Home, Events, Courts } from '@/presentation/pages';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -11,6 +11,11 @@ const routes: RouteRecordRaw[] = [
     name: 'events',
     path: '/events',
     component: Events,
+  },
+  {
+    name: 'courts',
+    path: '/courts',
+    component: Courts,
   }
 ]
 

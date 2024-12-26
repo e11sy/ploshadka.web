@@ -36,8 +36,8 @@ export const usePopover = createSharedComposable(() => {
    * Popover position info used in the Popover component
    */
   const position = reactive({
-    left: 0,
-    top: 0,
+    left: '0px',
+    top: '0px',
     transform: 'translate(0, 0)',
   });
 
@@ -68,29 +68,29 @@ export const usePopover = createSharedComposable(() => {
 
     const rect = targetEl.getBoundingClientRect();
 
-    let top = 0;
-    let left = 0;
+    let top = '0px';
+    let left = '0px';
     let transformX = '0';
     let transformY = '0';
 
     switch (align.vertically) {
       case 'above':
-        top = rect.top - MARGIN + window.scrollY;
+        top = `${rect.top - MARGIN + window.scrollY}px`;
         transformY = '-100%';
         break;
       case 'below':
-        top = rect.bottom + MARGIN + window.scrollY;
+        top = `${rect.bottom + MARGIN + window.scrollY}px`;
         transformY = '0';
         break;
     }
 
     switch (align.horizontally) {
       case 'left':
-        left = rect.left;
+        left = `${rect.left}px`;
         transformX = '0';
         break;
       case 'right':
-        left = rect.right;
+        left = `${rect.right}px`;
         transformX = '-100';
         break;
     }
@@ -106,6 +106,7 @@ export const usePopover = createSharedComposable(() => {
 
     position.left = left;
     position.top = top;
+    console.log(left, top)
     position.transform = `translate(${transformX}%, ${transformY})`;
   }
 
@@ -136,6 +137,7 @@ export const usePopover = createSharedComposable(() => {
     targetElement.value = params.targetEl;
     move(params.targetEl, params.align, params.width);
     mountComponent(params.with.component, params.with.props);
+    console.log('show', targetElement.value)
     show();
   }
 

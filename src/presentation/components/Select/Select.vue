@@ -2,7 +2,6 @@
   <Button
     :icon="activeItem.icon"
     :content="activeItem.title"
-
     @click="!isOpen ? togglePopover($event.currentTarget, {vertically: 'below', horizontally: 'left'}) : hide()"
   />
 </template>
@@ -26,6 +25,7 @@ const togglePopover = (el: HTMLElement, align: PopoverShowParams['align']) => {
     with: {
       component: ContextMenu,
       props: {
+        showSearch: false,
         items: items,
       },
     },

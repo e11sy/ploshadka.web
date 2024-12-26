@@ -32,8 +32,6 @@ const {
   targetElement,
 } = usePopover();
 
-console.log(content, 'content in popover');
-
 /**
  * Close the popover when clicking outside of it
  */

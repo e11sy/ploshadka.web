@@ -5,11 +5,19 @@
   >
     <div
       v-if="showSearch"
+      @focusin="showMenuItems = true"
+      @focusout="showMenuItems = true"
       :class="$style['context-menu__search']"
     >
+    <Input
+        v-model="searchTerm"
+        placeholder="Search"
+      />
       <ContextMenuItem :item="separator" />
     </div>
+
     <div
+      v-if="showMenuItems"
       :class="$style['context-menu__scrollable']"
       :style="fixWidth !== 0 ? { width: fixWidth } : {}"
     >
@@ -48,6 +56,7 @@ const props = withDefaults(
   { showSearch: false }
 );
 
+const showMenuItems = ref<boolean>(true);
 const contextMenu = ref();
 let fixWidth = 0;
 
@@ -55,8 +64,7 @@ let fixWidth = 0;
  * Calculates the fixed width of the container after mounting
  */
 onMounted(() => {
-  console.log('mounted context menu');
-
+  console.log('contextMenu in popover mounted with', props.items)
   fixWidth = contextMenu.value.getBoundingClientRect().width;
 });
 
@@ -150,7 +158,7 @@ const messageItem: Item = {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  width: min-content;
+  width: auto;
 
   &__search {
     display: grid;
@@ -159,7 +167,7 @@ const messageItem: Item = {
 
   &__scrollable {
     display: grid;
-    width: max-content;
+    width: auto;
     gap: 2px;
   }
 }

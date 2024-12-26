@@ -53,7 +53,7 @@ defineProps<{
 
   &__line {
     align-self: stretch;
-    background: #FFFFFF;
+    background: #F5F5F5;
     height: 1px;
   }
 
@@ -68,7 +68,7 @@ defineProps<{
   }
 
   .item__default:not(.item__default--no-hover):hover {
-    background-color: #FFFFFF;
+    background-color: #F5F5F5;
     cursor: pointer;
   }
 

@@ -4,6 +4,7 @@
       <Select
         :items="selectItems"
       />
+      {{ isOpen }}
       <div :class="$style['events__header-city']">
         Санкт-Петербург
       </div>
@@ -12,12 +13,13 @@
       <EventCard
         v-for="event in events"
         :key="event.id"
+        :onActivated="() => changeParticipationStatus(event.id)"
         :event="event"
       />
     </div>
-
-    <Popover />
+    <Popover/>
   </div>
+
 </template>
 
 <script setup lang="ts">
@@ -25,8 +27,11 @@ import { useEvents } from '@/application/services/useEvents';
 import { onMounted } from 'vue';
 import { EventCard, Select } from '@/presentation/components';
 import Popover from '../components/Popover';
+import { usePopover } from '../components/Popover';
 
-const { events, updateEventsBySport } = useEvents();
+const { isOpen } = usePopover();
+
+const { events, updateEventsBySport, changeParticipationStatus } = useEvents();
 
 const selectItems = [{
   title: 'футбол',

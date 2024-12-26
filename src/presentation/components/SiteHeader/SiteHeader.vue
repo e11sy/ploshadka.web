@@ -8,9 +8,12 @@
       <div :class="$style['header__breadcrumbs']">
         <div
           :class="$style['header__breadcrumbs-text']"
-          @click="router.push('/events')"
+          @click="router.push('/courts')"
           >Площадки</div>
-        <div :class="$style['header__breadcrumbs-text']">Тренировки</div>
+        <div
+          :class="$style['header__breadcrumbs-text']"
+          @click="router.push('/events')"
+          >События</div>
         <div
           :class="$style['header__breadcrumbs-text']"
           @click="router.push('/')"
@@ -21,7 +24,7 @@
         v-if="user === null">
         <Button
           content="Войти"
-          secondary
+          color="white"
           @click="showLoginPopup"
           />
         <Button
@@ -34,7 +37,6 @@
         :class="$style['header__logout']">
         <Button
           content="Выйти"
-          secondary
           @click="logout"
           />
       </div>

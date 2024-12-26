@@ -32,4 +32,12 @@ export default class EventsService {
   public async getEventsBySport(sport: string): Promise<Event[]> {
     return await this.eventsRepository.getEventsBySport(sport);
   }
+
+  /**
+   * Change participation status of current user in event
+   * @param eventId Event id to change participation status
+   */
+  public async changeParticipationStatus(eventId: Event['id']): Promise<boolean> {
+    return await this.eventsRepository.changeParticipationStatus(eventId);
+  }
 }

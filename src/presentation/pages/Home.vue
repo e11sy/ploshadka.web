@@ -20,7 +20,10 @@
           </span>
         </template>
         <template #footer>
-          <Button content='Площадки'/>
+          <Button
+            content='Площадки'
+            @click="router.push('/events')"
+          />
         </template>
       </Card>
       <Card
@@ -37,7 +40,11 @@
           </span>
         </template>
         <template #footer>
-          <Button content='Записаться' secondary/>
+          <Button
+          content='Записаться'
+          color='white'
+          @click="router.push('/events')"
+          />
         </template>
       </Card>
     </div>
@@ -61,6 +68,10 @@
 
 <script setup lang="ts">
 import { Card, Button, Container } from '../components';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 </script>
 
 <style module lang="postcss">

@@ -30,7 +30,15 @@ export default class EventsRepository implements EventsRepositoryInterface {
    * Get events by sport type
    * @param sport Sport type to get events by
    */
-  getEventsBySport(sport: Event['sport']): Promise<Event[]> {
+  public async getEventsBySport(sport: Event['sport']): Promise<Event[]> {
     return this.transport.get<Event[]>('/events/sport/' + sport);
+  }
+
+  /**
+   * Change participation status of current user in event
+   * @param eventId Event id to change participation status
+   */
+  public async changeParticipationStatus(eventId: Event['id']): Promise<boolean> {
+    return this.transport.patch<boolean>('/events/' + eventId + '/participation');
   }
 }

@@ -1,38 +1,48 @@
 import Court from './Court.js';
 
 export default interface Event {
-    /**
-     * Event internal id
-     */
-    id: number,
+  /**
+   * Event internal id
+   */
+  id: number,
 
-    /**
-     * Id of court, where evert is based
-     */
-    courtId: Court['id'],
+  /**
+   * Id of court, where evert is based
+   */
+  courtId: Court['id'],
 
-    /**
-     * Name of the event
-     */
-    name: string,
+  /**
+   * Name of the event
+   */
+  name: string,
 
-    /**
-     * Description of the event
-     */
-    description: string,
+  /**
+   * Description of the event
+   */
+  description: string,
 
-    /**
-     * Sport type
-     */
-    sport: string,
+  /**
+   * Sport type
+   */
+  sport: string,
 
-    /**
-     * Array of timestamps without timezone (start and end of event)
-     */
-    peopleState: [number, number],
+  /**
+   * How many people already participate in the event and how many people can participate
+   */
+  peopleLimit: number,
 
-    /**
-     * Flag to mark event as visited or planned to visit
-     */
-    visited: boolean,
+  /**
+   * Current participants count
+   */
+  peopleCount: number,
+
+  /**
+   * Date when event will be closed
+   */
+  expires_at: Date,
+
+  /**
+   * Date when event will be started
+   */
+  isVisited: boolean,
 }

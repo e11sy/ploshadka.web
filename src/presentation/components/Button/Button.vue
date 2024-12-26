@@ -1,7 +1,7 @@
 <template>
   <div :class="[
     $style['btn'],
-    $props.secondary && $style[`btn--secondary`]]">
+    $props.color !== 'black' && $style[`btn--${$props.color}`]]">
     <div v-if="$props.icon !== undefined">
       <Icon :name="$props.icon"/>
     </div>
@@ -14,12 +14,15 @@
 <script setup lang="ts">
 import Icon from '../Icon';
 
-defineProps<{
-  icon?: string,
-  content: string,
-  secondary?: boolean,
-}>();
-
+withDefaults(
+  defineProps<{
+    icon?: string,
+    content: string,
+    color?: 'black' | 'white' | 'green',
+  }>(), {
+    color: 'black',
+  }
+);
 </script>
 
 <style module lang="postcss">
@@ -35,14 +38,18 @@ defineProps<{
 
   &:hover {
     transition: background-color 0.3s;
-    transition: color 0.3s;
-    background-color: rgba(30, 30, 30, 1);
+    background-color: #1E1E1E;
     color: #FFFFFF;
   }
 
-  &--secondary {
+  &--white {
     background-color: #F5F5F5;
     color: #1E1E1E;
+  }
+
+  &--green {
+    background-color: #358C29;
+    color: #FFFFFF;
   }
 
   &__content {

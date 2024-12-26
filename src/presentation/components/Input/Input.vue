@@ -10,9 +10,9 @@
     <input
       ref="textInput"
       v-model="model"
-      :class="[$style['input__editable-zone'], 'text-ui-base']"
+      :class="[$style['input__editable-zone']]"
       :disabled="props.disabled"
-      :placeholder="placeholder"
+      :placeholder="props.placeholder"
     >
   </div>
 </template>
@@ -69,27 +69,27 @@ onMounted(() => {
 <style module>
 .input {
   display: flex;
-  background-color: #FFFFFF;
+  background-color: #F5F5F5;
   gap: 8px;
   align-items: center;
   width: 100%;
   cursor: text;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #9C9C9C;
 
   &__editable-zone {
     flex: 1;
     border: 0;
     outline: 0;
     padding: 0;
-    color: #FFFFFF;
+    color: #1F1F1F;
     width: inherit;
     font-size: inherit;
     font-family: inherit;
     background-color: inherit;
 
     &[disabled] {
-      color: #FFFFFF;
+      color: #9C9C9C;
     }
   }
 

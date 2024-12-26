@@ -4,9 +4,9 @@
 </template>
 
 <script setup lang="ts">
-import { Header } from '@/presentation/components';
+import { Header, Popover } from '@/presentation/components';
+import 'leaflet/dist/leaflet.css';
 </script>
-
 
 <style module>
 @import './style/typography.pcss';

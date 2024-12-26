@@ -14,4 +14,10 @@ export default interface EventsRepositoryInterface {
    * @param sport Sport type to get events by
    */
   getEventsBySport(sport: string): Promise<Event[]>;
+
+  /**
+   * Change participation status of current user in event
+   * @param eventId Event id to change participation status
+   */
+  changeParticipationStatus(eventId: Event['id']): Promise<boolean>;
 }
