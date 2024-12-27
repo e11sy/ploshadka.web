@@ -1,3 +1,6 @@
 import Home from './Home.vue';
+import Events from './Events.vue';
+import Courts from './Courts.vue';
+import CreateEvent from './CreateEvent.vue';
 
-export { Home };
+export { Home, Events, Courts, CreateEvent };

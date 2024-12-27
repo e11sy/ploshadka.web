@@ -1,35 +1,42 @@
 <template>
   <div :class="$style['header']">
     <div :class="$style['header__content']">
-      <Logo/>
+      <Logo
+        style="margin-right: auto; cursor: pointer;"
+        @click="router.push('/')"
+      />
       <div :class="$style['header__breadcrumbs']">
-        <div :class="$style['header__breadcrumbs-text']">Площадки</div>
-        <div :class="$style['header__breadcrumbs-text']">События</div>
-        <div :class="$style['header__breadcrumbs-text']">О&nbsp;нас</div>
+        <div
+          :class="$style['header__breadcrumbs-text']"
+          @click="router.push('/courts')"
+          >Площадки</div>
+        <div
+          :class="$style['header__breadcrumbs-text']"
+          @click="router.push('/events')"
+          >События</div>
+        <div
+          :class="$style['header__breadcrumbs-text']"
+          @click="router.push('/')"
+          >О&nbsp;нас</div>
       </div>
 
-      <div :class="$style['header__auth']">
+      <div :class="$style['header__auth']"
+        v-if="user === null">
         <Button
-          v-if="user === null"
           content="Войти"
-          size="medium"
+          color="white"
           @click="showLoginPopup"
           />
         <Button
-          v-if="user === null"
           content="Зарегистрироваться"
-          size="medium"
-          secondary
           @click="showLoginPopup"
           />
-
       </div>
-      <div :class="$style['header__logout']">
+      <div
+        v-else
+        :class="$style['header__logout']">
         <Button
-          v-if="user !== null"
           content="Выйти"
-          size="medium"
-          secondary
           @click="logout"
           />
       </div>
@@ -38,10 +45,13 @@
 </template>
 
 <script setup lang="ts">
-import Logo from './Logo.vue';
-import Button from './Button.vue';
+import Logo from '../Logo';
+import Button from '../Button';
 import useAuth from '@/application/services/useAuth';
 import { useAppState } from '@/application/services/useAppState';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { showGoogleAuthPopup } = useAuth();
 const { user } = useAppState()
@@ -59,40 +69,42 @@ function showLoginPopup() {
 <style module lang="postcss">
 .header {
   display: flex;
-  background-color: #202020;
-  height: 94px;
-  padding-top: 52px;
-  padding-bottom: 52px;
-  padding-left: 143px;
+  background-color: #FFFFFF;
+  height: 80px;
+  padding: 0px 100px;
+  font-weight: bold;
+  border: #CBCBCB 1px, solid;
 
   &__content {
     display: flex;
-    width: fit-content;
+    width: 100%;
     align-items: center;
   }
 
   &__breadcrumbs {
-    padding-left: 340px;
+    cursor: pointer;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     gap: 2em;
 
     &-text {
-      color: #FFFFFF;
-      font-size: 22px;
+      color: #1E1E1E;
+      font-size: 16px;
       letter-spacing: 2px;
     }
   }
 
   &__auth {
     display: flex;
-    padding-left: 120px;
+    margin-left: auto;
+    min-width: 210px;
     gap: 26px;
   }
 
   &__logout {
-    display: flex;
-    padding-left: 260px;
+    min-width: 210px;
+    margin-left: auto;
   }
 }
 

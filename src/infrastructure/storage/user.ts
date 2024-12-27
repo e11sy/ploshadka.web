@@ -27,8 +27,6 @@ export default class UserStore extends SessionStore<UserStoreData> {
    * @param user - data to set
    */
   public setUser(user: User): void {
-    console.log("user set");
-
     this.data.user = user;
   }
 
@@ -36,7 +34,6 @@ export default class UserStore extends SessionStore<UserStoreData> {
    * Removes user data
    */
   public clearUser(): void {
-    console.log('user is null')
     this.data.user = null;
   }
 }

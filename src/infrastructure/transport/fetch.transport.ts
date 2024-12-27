@@ -62,6 +62,8 @@ export default class FetchTransport {
     endpoint,
     payload,
   }: POSTParams): Promise<JSONValue> {
+    this.headers.set('Content-Type', 'application/json');
+
     let body: FormData | string | undefined = payload ? JSON.stringify(payload) : undefined;
 
     /**

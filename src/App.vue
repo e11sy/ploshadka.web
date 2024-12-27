@@ -1,15 +1,18 @@
 <template>
   <Header />
-  <RouterView />
+  <RouterView :class="$style['app']"/>
+  <Popover/>
 </template>
 
 <script setup lang="ts">
-import { Header } from '@/presentation/components';
+import { Header, Popover } from '@/presentation/components';
+import 'leaflet/dist/leaflet.css';
 </script>
-
 
 <style module>
 @import './style/typography.pcss';
-
-
+.app {
+  background-color: #F5F5F5;
+  height: 100%;
+}
 </style>

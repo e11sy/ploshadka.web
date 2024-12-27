@@ -27,14 +27,14 @@ export default class UserService {
     /**
      * When we got authorized
      */
-    eventBus.addEventListener(AUTH_COMPLETED_EVENT_NAME, () => {
-      void this.repository.loadUser();
+    eventBus.addEventListener(AUTH_COMPLETED_EVENT_NAME, async () => {
+      await this.repository.loadUser();
     });
     /**
      * When we got unauthorized
      */
-    eventBus.addEventListener(AUTH_LOGOUT_EVENT_NAME, () => {
-      void this.repository.clearUser();
+    eventBus.addEventListener(AUTH_LOGOUT_EVENT_NAME, async () => {
+      await void this.repository.clearUser();
     });
   }
 
