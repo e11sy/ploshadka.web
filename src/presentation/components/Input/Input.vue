@@ -69,7 +69,7 @@ onMounted(() => {
 <style module>
 .input {
   display: flex;
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
   gap: 8px;
   align-items: center;
   width: 100%;

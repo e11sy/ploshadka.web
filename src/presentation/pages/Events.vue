@@ -4,7 +4,6 @@
       <Select
         :items="selectItems"
       />
-      {{ isOpen }}
       <div :class="$style['events__header-city']">
         Санкт-Петербург
       </div>
@@ -13,41 +12,55 @@
       <EventCard
         v-for="event in events"
         :key="event.id"
-        :onActivated="() => changeParticipationStatus(event.id)"
+        :buttonIsActive="!!event.isParticipating"
+        :displayParticipation="((!!user) && (event.peopleCount < event.peopleLimit)) || (event.isParticipating === true)"
+        :onActivated="async () => changeParticipationStatus(event.id)"
         :event="event"
       />
     </div>
-    <Popover/>
   </div>
 
 </template>
 
 <script setup lang="ts">
 import { useEvents } from '@/application/services/useEvents';
-import { onMounted } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { EventCard, Select } from '@/presentation/components';
-import Popover from '../components/Popover';
-import { usePopover } from '../components/Popover';
+import { useAppState } from '@/application/services/useAppState';
 
-const { isOpen } = usePopover();
-
+const { user } = useAppState();
 const { events, updateEventsBySport, changeParticipationStatus } = useEvents();
+
+const selectedSport = ref<'футбол' | 'баскетбол' | 'теннис' | 'хоккей' | 'волейбол' | undefined>(undefined);
+
+/**
+ * Watch on user value changes and update events by court ids
+ * This is need to update events participation status when user is authorized
+ */
+watch(() => user.value, () => {
+  updateEventsBySport(selectedSport.value ?? '');
+})
+
+watch(() => selectedSport.value, () => {
+  updateEventsBySport(selectedSport.value ?? '');
+})
+
 
 const selectItems = [{
   title: 'футбол',
-  onActivate: () => updateEventsBySport('футбол'),
+  onActivate: () => selectedSport.value = 'футбол',
 }, {
   title: 'баскетбол',
-  onActivate: () => updateEventsBySport('баскетбол'),
+  onActivate: () => selectedSport.value = 'баскетбол',
 }, {
   title: 'теннис',
-  onActivate: () => updateEventsBySport('теннис'),
+  onActivate: () => selectedSport.value = 'теннис',
 }, {
   title: 'хоккей',
-  onActivate: () => updateEventsBySport('хоккей'),
+  onActivate: () => selectedSport.value = 'хоккей',
 }, {
   title: 'волейбол',
-  onActivate: () => updateEventsBySport('волейбол'),
+  onActivate: () => selectedSport.value = 'волейбол',
 }];
 
 onMounted(() => {

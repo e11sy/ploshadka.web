@@ -1,4 +1,4 @@
-import Event from './entities/Event';
+import Event, { EventCreationAttributes } from './entities/Event';
 
 /**
  * Interface that represents the events repository
@@ -20,4 +20,16 @@ export default interface EventsRepositoryInterface {
    * @param eventId Event id to change participation status
    */
   changeParticipationStatus(eventId: Event['id']): Promise<boolean>;
+
+  /**
+   * Get events by court ids
+   * @param courtIds ids of currently displayed courts
+   */
+  getEventsByCourtIds(courtIds: Event['courtId'][]): Promise<Event[]>;
+
+  /**
+   * Create new event
+   * @param event Event to create
+   */
+  createEvent(event: EventCreationAttributes): Promise<void>;
 }

@@ -1,6 +1,7 @@
 import AuthRepository from '@/infrastructure/auth.repository'
 import UserRepository from './user.repository';
 import EventsRepository from './events.repository';
+import CourtsRepository from './courts.repository';
 import AuthStore from '@/infrastructure/storage/auth';
 import UserStore from '@/infrastructure/storage/user';
 import PloshadkaApiTransport from './transport/ploshadka-api';
@@ -8,11 +9,11 @@ import EventBus from '@/domain/event-bus';
 import { AUTH_COMPLETED_EVENT_NAME, AuthCompletedEvent } from '@/domain/event-bus/events/AuthCompleted';
 import { AUTH_LOGOUT_EVENT_NAME } from '@/domain/event-bus/events/AuthLogoutEvent';
 
-
 export interface Repositories {
   auth: AuthRepository;
   user: UserRepository;
   events: EventsRepository;
+  courts: CourtsRepository;
 }
 
 export function init(ploshadkaApiUrl: string, eventBus: EventBus): Repositories {
@@ -23,7 +24,6 @@ export function init(ploshadkaApiUrl: string, eventBus: EventBus): Repositories 
    * Init transport
    */
   const ploshadkaApiTransport = new PloshadkaApiTransport(ploshadkaApiUrl);
-
 
   /**
    * When we got authorized
@@ -63,10 +63,12 @@ export function init(ploshadkaApiUrl: string, eventBus: EventBus): Repositories 
   const authRepository = new AuthRepository(authStore, ploshadkaApiTransport);
   const userRepository = new UserRepository(userStore, ploshadkaApiTransport);
   const eventsRepository = new EventsRepository(ploshadkaApiTransport);
+  const courtsRepository = new CourtsRepository(ploshadkaApiTransport);
 
   return {
     auth: authRepository,
     user: userRepository,
-    events: eventsRepository
+    events: eventsRepository,
+    courts: courtsRepository,
   }
 }

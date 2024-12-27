@@ -2,7 +2,7 @@
   <div :class="$style['event-card']">
     <div :class="$style['event-card__heading']">
       <h2 :class="$style['event-card__heading-location']">
-        {{ event.courtId }}
+        {{ event.court.name }}
       </h2>
       <p :class="$style['event-card__heading-sport']">
         {{ event.sport }}
@@ -15,12 +15,21 @@
     <div :class="$style['event-card__info-description']">
       {{ event.description }}
     </div>
-    <div :class="$style['event-card__footer']">
+    <div
+      v-if="displayParticipation"
+      :class="$style['event-card__footer']">
       <Button
+        v-if="!buttonIsActive"
         color="green"
-        :content="'Участвовать'"
-        @click="$props.onActivated()"
-      ></Button>
+        content="Участвовать"
+        @click="buttonClicked"
+      />
+      <Button
+        v-else
+        color="green"
+        content="✅Вы участник"
+        @click="buttonClicked"
+      />
       <div :class="$style['event-card__footer-participants']">
         {{ event.peopleCount ?? 0 }}/{{ event.peopleLimit }} участников
       </div>
@@ -31,11 +40,24 @@
 <script setup lang="ts">
 import Event from '@/domain/entities/Event';
 import Button from '../Button';
+import { ref, watch } from 'vue';
 
-defineProps<{
+const props = defineProps<{
   event: Event;
-  onActivated: () => void;
+  buttonIsActive: boolean;
+  onActivated: () => Promise<void>;
+  displayParticipation: boolean;
 }>();
+
+watch(() => props.buttonIsActive, () => {
+  buttonIsActive.value = props.buttonIsActive;
+});
+
+const buttonIsActive = ref(props.buttonIsActive);
+
+const buttonClicked = async () => {
+  await props.onActivated();
+};
 
 </script>
 
@@ -48,19 +70,20 @@ defineProps<{
   padding: 0 16px 16px 16px;
 
   &__heading {
-    max-height: 40px;
+    height: fit-content;
     display: flex;
     align-items: center;
 
     &-location {
       margin-right: auto;
-      overflow: ellipsis;
+      max-width: 300px;
       font-size: 16px;
       font-weight: bold;
     }
 
     &-sport {
       margin-left: auto;
+      padding-left: 20px;
       font-size: 16px;
       font-weight: bold;
     }

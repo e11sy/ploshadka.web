@@ -45,4 +45,19 @@ export default interface Event {
    * Date when event will be started
    */
   isVisited: boolean,
+
+  /**
+   * Presentation of the associated court
+   */
+  court: Court,
+
+  /**
+   * Is current user participating in the event
+   */
+  isParticipating?: boolean,
 }
+
+/**
+ * Type that represents event creation attributes
+ */
+export type EventCreationAttributes = Pick<Event, 'name' | 'courtId' | 'sport' | 'peopleLimit'>;

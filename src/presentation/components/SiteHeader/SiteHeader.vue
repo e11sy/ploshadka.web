@@ -98,10 +98,12 @@ function showLoginPopup() {
   &__auth {
     display: flex;
     margin-left: auto;
+    min-width: 210px;
     gap: 26px;
   }
 
   &__logout {
+    min-width: 210px;
     margin-left: auto;
   }
 }

@@ -106,8 +106,8 @@ export const usePopover = createSharedComposable(() => {
 
     position.left = left;
     position.top = top;
-    console.log(left, top)
-    position.transform = `translate(${transformX}%, ${transformY})`;
+
+    position.transform = `translate(${transformX}, ${transformY})`;
   }
 
   /**
@@ -137,7 +137,6 @@ export const usePopover = createSharedComposable(() => {
     targetElement.value = params.targetEl;
     move(params.targetEl, params.align, params.width);
     mountComponent(params.with.component, params.with.props);
-    console.log('show', targetElement.value)
     show();
   }
 
@@ -147,8 +146,8 @@ export const usePopover = createSharedComposable(() => {
   function resetPopover(): void {
     targetElement.value = null;
     content.value = null;
-    position.left = 0;
-    position.top = 0;
+    position.left = '0px';
+    position.top = '0px';
     position.transform = 'translate(0, 0)';
 
     isOpen.value = false;

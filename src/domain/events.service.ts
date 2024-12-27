@@ -1,8 +1,8 @@
 import EventsRepositoryInterface from './events.repository.interface.js';
-import Event from './entities/Event.js';
+import Event, { EventCreationAttributes } from './entities/Event.js';
 
 /**
- * Service to manage events
+ * Service that represents events business logic
  */
 export default class EventsService {
   /**
@@ -39,5 +39,21 @@ export default class EventsService {
    */
   public async changeParticipationStatus(eventId: Event['id']): Promise<boolean> {
     return await this.eventsRepository.changeParticipationStatus(eventId);
+  }
+
+  /**
+   * Get events by court ids
+   * @param courtIds ids of currently displayed courts
+   */
+  public async getEventsByCourtIds(courtIds: Event['courtId'][]): Promise<Event[]> {
+    return await this.eventsRepository.getEventsByCourtIds(courtIds);
+  }
+
+  /**
+   * Create new event
+   * @param event Event to create
+   */
+  public async createEvent(event: EventCreationAttributes): Promise<void> {
+    await this.eventsRepository.createEvent(event);
   }
 }

@@ -2,6 +2,7 @@ import { init as initRepositories } from '@/infrastructure';
 import AuthService from '@/domain/auth.service.ts';
 import EventBus from './event-bus';
 import UserService from './user.service';
+import CourtsSercice from './courts.service';
 import EventsService from './events.service';
 
 /**
@@ -34,9 +35,11 @@ export const AppStateController = {
 const authService = new AuthService(eventBus, repositories.auth);
 const userService = new UserService(eventBus, repositories.user);
 const eventsService = new EventsService(repositories.events);
+const courtsService = new CourtsSercice(repositories.courts);
 
 export {
   authService,
   userService,
-  eventsService
+  eventsService,
+  courtsService,
 }

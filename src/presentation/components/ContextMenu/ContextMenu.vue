@@ -6,7 +6,7 @@
     <div
       v-if="showSearch"
       @focusin="showMenuItems = true"
-      @focusout="showMenuItems = true"
+      @focusout="showMenuItems = false"
       :class="$style['context-menu__search']"
     >
     <Input
@@ -31,6 +31,9 @@
 </template>
 
 <script setup lang="ts">
+
+const showMenuItems = ref(true);
+
 import { ref, computed, onMounted } from 'vue';
 import Input from '../Input';
 import type { ContextMenuItem as Item } from './ContextMenu.types';
@@ -53,10 +56,11 @@ const props = withDefaults(
      */
     items: Item[];
   }>(),
-  { showSearch: false }
+  {
+    showSearch: false,
+   }
 );
 
-const showMenuItems = ref<boolean>(true);
 const contextMenu = ref();
 let fixWidth = 0;
 
@@ -64,7 +68,6 @@ let fixWidth = 0;
  * Calculates the fixed width of the container after mounting
  */
 onMounted(() => {
-  console.log('contextMenu in popover mounted with', props.items)
   fixWidth = contextMenu.value.getBoundingClientRect().width;
 });
 

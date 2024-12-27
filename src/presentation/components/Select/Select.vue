@@ -35,7 +35,7 @@ const togglePopover = (el: HTMLElement, align: PopoverShowParams['align']) => {
 
 /* Default item value for select on page load */
 const defaultValue: Item = {
-  title: 'выберите вид спорта',
+  title: 'вид спорта',
   type: 'default',
   onActivate: () => {},
 };

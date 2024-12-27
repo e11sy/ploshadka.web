@@ -66,6 +66,8 @@ export default class AuthorizableTransport extends Transport {
   public continueAnonymous(): void {
     this.authState = 'unauthorized';
 
+    this.headers.delete('Authorization');
+
     this.onAuthFinished();
   }
 

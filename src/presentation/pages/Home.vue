@@ -22,7 +22,7 @@
         <template #footer>
           <Button
             content='Площадки'
-            @click="router.push('/events')"
+            @click="router.push('/courts')"
           />
         </template>
       </Card>

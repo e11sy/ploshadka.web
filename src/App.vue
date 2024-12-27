@@ -1,6 +1,7 @@
 <template>
   <Header />
   <RouterView :class="$style['app']"/>
+  <Popover/>
 </template>
 
 <script setup lang="ts">

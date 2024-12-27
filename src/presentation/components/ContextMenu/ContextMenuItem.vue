@@ -12,9 +12,7 @@
           v-if="item.icon !== undefined"
           :name="item.icon"
         />
-        <div>
-          {{ item.title }}
-        </div>
+        {{ item.title }}
       </div>
     </div>
     <div
@@ -74,7 +72,9 @@ defineProps<{
 
   &__body {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    word-wrap: break-word;
     min-height: 20px;
     gap: 8px;
   }
