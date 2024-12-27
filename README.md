@@ -38,8 +38,9 @@
      ```
    - Update the `.env` file with your configurations:
      ```env
-     GOOGLE_API_CLIENT_ID=your-client-id
-     GOOGLE_API_CLIENT_SECRET=your-client-secret
+     VITE_API_URL=your-api-url
+     VITE_GOOGLE_OAUTH_URL=your-client-id
+     VITE_PRODUCTION_HOSTNAME=your-project-host
      ```
      and postgres dsn
 4. Start the development server:
