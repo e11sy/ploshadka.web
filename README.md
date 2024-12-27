@@ -42,7 +42,6 @@
      VITE_GOOGLE_OAUTH_URL=your-client-id
      VITE_PRODUCTION_HOSTNAME=your-project-host
      ```
-     and postgres dsn
 4. Start the development server:
    ```bash
    yarn dev
