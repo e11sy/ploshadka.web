@@ -1,4 +1,5 @@
 # Ploshadka WEB
+Web part of the sports leisure organization service
 
 <img width="1419" alt="image" src="https://github.com/user-attachments/assets/3ffe962b-f635-40a5-8974-2ef6b809e43a" />
 
