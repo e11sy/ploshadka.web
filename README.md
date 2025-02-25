@@ -2,7 +2,7 @@
 
 <img width="1419" alt="image" src="https://github.com/user-attachments/assets/3ffe962b-f635-40a5-8974-2ef6b809e43a" />
 
-**Ploshadka WEB** is a backend service created for studying purposes as part of a sports leisure organization service. This project provides functionalities such as:
+**Ploshadka WEB** is a FE service created for studying purposes as part of a sports leisure organization service. This project provides functionalities such as:
 
 - Organization of events
 - Management of stored sport courts
