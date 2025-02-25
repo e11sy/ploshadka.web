@@ -1,6 +1,8 @@
-# Ploshadka API
+# Ploshadka WEB
 
-**Ploshadka API** is a backend service created for studying purposes as part of a sports leisure organization service. This project provides functionalities such as:
+<img width="1419" alt="image" src="https://github.com/user-attachments/assets/3ffe962b-f635-40a5-8974-2ef6b809e43a" />
+
+**Ploshadka WEB** is a backend service created for studying purposes as part of a sports leisure organization service. This project provides functionalities such as:
 
 - Organization of events
 - Management of stored sport courts
@@ -8,15 +10,14 @@
 
 ## Features
 
-- **Event Management:** API endpoints to create, update, and manage sports events.
-- **Court Listings:** Access and manage a database of available sports courts.
+- **Event Management:** UI for event creation and participation.
+- **Court Listings:** Find a suitable court by sport or location.
 - **Google Authorization:** Integrates with Google API for secure user authentication.
 
 ## Requirements
 
 - Node.js
 - Yarn (dependency manager)
-- Redis (v3.x or v4.x depending on your setup)
 - TypeScript
 - Google API credentials
 
@@ -24,8 +25,8 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ploshadka.api.git
-   cd ploshadka.api
+   git clone https://github.com/e11sy/ploshadka.web.git
+   cd ploshadka.web
    ```
 2. Install dependencies:
    ```bash
@@ -39,18 +40,21 @@
    - Update the `.env` file with your configurations:
      ```env
      VITE_API_URL=your-api-url
-     VITE_GOOGLE_OAUTH_URL=your-client-id
+     VITE_GOOGLE_OAUTH_URL=your-api-url/oauth/google/login
      VITE_PRODUCTION_HOSTNAME=your-project-host
      ```
 4. Start the development server:
+   - Run server in developement mode 
    ```bash
    yarn dev
    ```
-   or
+   or start preview of the builded project
    ```bash
-   yarn start
+   yarn build
+   yarn preview
    ```
 
 ## Note
 
 This project is for **learning purposes only** and is not intended for production use.
+If you are interested in the development of the project or facing bugs - leave an issue or write [me](https://t.me/e11sy)
