@@ -31,7 +31,7 @@ Web part of the sports leisure organization service
    ```
 2. Install dependencies:
    ```bash
-   yarn install
+   yarn
    ```
 3. Configure the environment variables:
    - Copy the `.env.sample` file to `.env`:
